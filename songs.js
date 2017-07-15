@@ -17,11 +17,11 @@ songs.toString();
 for (let i = 0; i < songs.length; i++){
     // console.log(songs[i]);
     let song_string = songs[i].replace('*' , '').replace('@' , '').replace('(', '').replace('!', '').replace('>','-');
-    console.log(song_string);
-    let song_string1 = `<div>${song_string}</div>`
+    // console.log(song_string);
+    let song_string_edit = `<div>${song_string}</div>`
 
     let placeholder = document.querySelector('div.song-list');
-    placeholder.innerHTML += song_string1;
+    placeholder.innerHTML += song_string_edit;
     // console.log('placeholder', placeholder)
     // console.log('song string', song_string)
 }
