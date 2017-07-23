@@ -1,11 +1,23 @@
 body {
   padding-top: 5%; }
 
+form {
+  border: solid 2px #DDDDDD;
+  border-radius: 5px;
+  padding: 2%; }
+
+.container {
+  display: flex;
+  justify-content: space-around; }
+
 .navbar > .container > .links {
   align-content: space-around;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding-top: 1%; }
+
+.navbar > .container > .links {
+  padding: 1%; }
 
 .navbar-header > a > img {
   height: 99%; }

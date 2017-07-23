@@ -1,16 +1,37 @@
 
 $primary_color: #F8F8F8
+$border: #DDDDDD
 
 
 body
   padding-top: 5%
 
+form
+  border: solid 2px $border
+  border-radius: 5px
+  padding: 2%
+
+.container
+  display: flex
+  justify-content: space-around
+
+//.container > .jumbotron
+//  color: $primary_color
+//  background: url(img/slick_jones.jpg) center no-repeat
+//
+//
+//.container > .jumbotron > h1
+//  text-align: end
+//  padding-top: 15%
+
 .navbar > .container > .links
   align-content: space-around
   display: flex
-  justify-content: space-around
+  justify-content: space-between
   padding-top: 1%
 
+.navbar > .container > .links
+  padding: 1%
 
 .navbar-header > a > img
   height: 99%
