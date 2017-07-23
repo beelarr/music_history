@@ -10,14 +10,34 @@ form {
   display: flex;
   justify-content: space-around; }
 
+#myCarousel {
+  width: 85%; }
+
+.navbar-toggle {
+  overflow: hidden; }
+  .navbar-toggle .icon-bar {
+    -webkit-transition: opacity;
+    transition: opacity;
+    transition: opacity, transform;
+    transition: opacity, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.7, 0, 0, 0.7); }
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg); }
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-100%); }
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg); }
+
 .navbar > .container > .links {
   align-content: space-around;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding-top: 1%; }
-
-.navbar > .container > .links {
-  padding: 1%; }
 
 .navbar-header > a > img {
   height: 99%; }
@@ -25,6 +45,7 @@ form {
 .row {
   display: flex;
   justify-content: space-around;
+  padding-top: 2%;
   text-align: center; }
 
 .thumbnail > img h3 {
