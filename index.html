@@ -104,20 +104,81 @@
 
 
 
-      <div class="container">
+      <div class="container sidebar">
           <div class="row">
-              <div class="col-sm-3">
+
+              <div class="col-sm-2 container-sidebar-left">
                   <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                  <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Artist
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Artist 1</a>
+                          <a class="dropdown-item" href="#">Artist 2</a>
+                          <a class="dropdown-item" href="#">Artist 3</a>
+                      </div>
+                  </div>
+                  <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Album
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Artist 1</a>
+                          <a class="dropdown-item" href="#">Artist 2</a>
+                          <a class="dropdown-item" href="#">Artist 3</a>
+                      </div>
+                  </div>
+                  <div class="container-checkbox-main">
+                  <div class="container-checkbox-left">
+                      <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Rock</span>
+                      </label>
+
+                      <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Pop</span>
+                      </label>
+
+                      <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Blues</span>
+                      </label>
+                  </div>
+                  <div class="container-checkbox-right">
+                      <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Classical</span>
+                      </label>
+
+                      <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Jazz</span>
+                      </label>
+
+                      <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Hip hop</span>
+                      </label>
 
                   </div>
-
               </div>
-              <div class="col-sm-9">
-                  <div class="song-list"></div>
               </div>
+          <div class="container-right-bar">
+          <div class="col-sm-8">
+              <div class="song-list"></div>
+          </div>
+          </div>
           </div>
       </div>
-
+      </div>
 
 
 

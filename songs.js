@@ -41,7 +41,7 @@ add_button.addEventListener('click', ()=>{
 // **********SLIDER**********
 
 $('#ex1').slider({
-    formatter: function(value) {
+    formatter: (value)=> {
         return 'Current value: ' + value;
     }
 });
