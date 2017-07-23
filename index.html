@@ -6,30 +6,40 @@
   <title>Music History</title>
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <a href="#">Profile | </a>
-        <a href="#">View Music | </a>
-        <a href="#">Add Music | </a>
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                  <img alt="Brand" src="img/M.png">
+              </a>
+          </div>
+          <div class="links">
+            <a href="#">Profile</a>
+              <p>|</p>
+            <a href="#">View Music</a>
+              <p>|</p>
+            <a href="#">Add Music</a>
+          </div>
       </div>
     </nav>
   </header>
   <main>
     <div class="container">
-        <div class="jumbotron">
-          <h1>Music History
-          </h1>
-          <p>...</p>
-          <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
-        </div>
+      <div class="jumbotron">
+        <h1>Music History</h1>
+        <p>...</p>
+        <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+      </div>
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-sm-6 col-md-3git">
+        <div class="col-sm-6 col-md-2">
           <div class="thumbnail">
             <img src="..." alt="...">
             <div class="caption">
@@ -39,61 +49,51 @@
             </div>
           </div>
         </div>
-      </div>
-        <div class="row">
-          <div class="col-sm-6 col-md-3git">
-            <div class="thumbnail">
-              <img src="..." alt="...">
-              <div class="caption">
-                <h3>Pat Metheny</h3>
-                <p>...</p>
-                <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <img src="..." alt="...">
+            <div class="caption">
+              <h3>Pat Metheny</h3>
+              <p>...</p>
+              <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
             </div>
           </div>
         </div>
-          <div class="row">
-            <div class="col-sm-6 col-md-3git">
-              <div class="thumbnail">
-                <img src="..." alt="...">
-                <div class="caption">
-                  <h3>Merle Haggard</h3>
-                  <p>...</p>
-                  <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
-                </div>
-              </div>
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <img src="..." alt="...">
+            <div class="caption">
+              <h3>Merle Haggard</h3>
+              <p>...</p>
+              <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
             </div>
           </div>
-            <div class="row">
-              <div class="col-sm-6 col-md-3git">
-                <div class="thumbnail">
-                  <img src="..." alt="...">
-                  <div class="caption">
-                    <h3>D'Angelo</h3>
-                    <p>...</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-              <div class="row">
-                <div class="col-sm-6 col-md-3git">
-                  <div class="thumbnail">
-                    <img src="..." alt="...">
-                    <div class="caption">
-                      <h3>Claude Debussy</h3>
-                      <p>...</p>
-                      <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </div>
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <img src="..." alt="...">
+            <div class="caption">
+              <h3>D'Angelo</h3>
+              <p>...</p>
+              <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
             </div>
           </div>
-
+        </div>
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <img src="..." alt="...">
+            <div class="caption">
+              <h3>Claude Debussy</h3>
+              <p>...</p>
+              <p><a href="#" class="btn btn-primary" role="button">Tour Dates</a> <a href="#" class="btn btn-default" role="button">Listen</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="sidebar">
       <select name="artist id="artist">
-        <option value="Stevie Wonder"></option>
+        <option value="Stevie Wonder">Stevie Wonder"</option>
         <option value="Pat Metheny">Pat Metheny</option>
         <option value="Merle Haggard">Merle Haggard</option>
         <option value="D'Angelo">D'Angelo</option>
@@ -101,7 +101,7 @@
 
       </select>
     </div>
-    </div>
+
     <div id ="page">
       <h2 class="song-title">Love's In Need of Love Today</h2>
       <p>Stevie Wonder | Songs In The Key Of Life | R&B</p>
