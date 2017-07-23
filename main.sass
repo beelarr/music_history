@@ -3,7 +3,7 @@ $primary_color: #F8F8F8
 $border: #DDDDDD
 $speed: 200ms
 $easing: cubic-bezier(0.7, 0, 0, 0.7)
-$car_opacity: opacity(.7)
+$caropacity: opacity(.7)
 
 
 body
@@ -12,18 +12,23 @@ body
 form
   border: solid 2px $border
   border-radius: 5px
+  margin-top: 10px
   padding: 2%
 
 .carousel-inner > .item > .carousel-caption
-  $car_opacity
+  $caropacity
 
 .carousel-indicators
-  $car_opacity
+  $caropacity
 
 
 .container
   display: flex
   justify-content: space-around
+
+
+
+
 
 //.container > .jumbotron
 //  color: $primary_color
@@ -34,7 +39,13 @@ form
 //  text-align: end
 //  padding-top: 15%
 
+.hide
+  display: none
+
+
 #myCarousel
+  height: 85%
+
   width: 85%
 
 
@@ -43,8 +54,6 @@ form
 .navbar-toggle
   overflow: hidden
   .icon-bar
-    transition: opacity,
-    transition: opacity, transform
     transition: opacity, transform,
     transition-duration: $speed
     transition-timing-function: $easing

@@ -27,4 +27,16 @@ for (let i = 0; i < songs.length; i++){
 }
 
 
+let add_form = document.querySelector('form');
+let add_button = document.querySelector('#add')
+console.log(add_form)
+
+
+add_button.addEventListener('click', ()=>{
+    add_form.classList.toggle('hide')
+})
+
+
+
+// **********SLIDER**********
 

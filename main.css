@@ -4,7 +4,8 @@ body {
 form {
   border: solid 2px #DDDDDD;
   border-radius: 5px;
-  padding: 2%; }
+  padding: 2%;
+  margin-top: 10px}
 
 .carousel-inner > .item > .carousel-caption {
   opacity: 0.4; }
