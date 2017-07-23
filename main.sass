@@ -3,6 +3,7 @@ $primary_color: #F8F8F8
 $border: #DDDDDD
 $speed: 200ms
 $easing: cubic-bezier(0.7, 0, 0, 0.7)
+$car_opacity: opacity(.7)
 
 
 body
@@ -12,6 +13,13 @@ form
   border: solid 2px $border
   border-radius: 5px
   padding: 2%
+
+.carousel-inner > .item > .carousel-caption
+  $car_opacity
+
+.carousel-indicators
+  $car_opacity
+
 
 .container
   display: flex
@@ -29,10 +37,12 @@ form
 #myCarousel
   width: 85%
 
+
+
+
 .navbar-toggle
   overflow: hidden
   .icon-bar
-    -webkit-transition: opacity,
     transition: opacity,
     transition: opacity, transform
     transition: opacity, transform,
@@ -43,21 +53,21 @@ form
       transform: translateY(6px) rotate(45deg)
     &:nth-child(2)
       opacity: 0
-      transform: translateX(-100%)
+      //transform: translateX(-100%)
     &:nth-child(3)
       transform: translateY(-6px) rotate(-45deg)
 
 
 
 
-.navbar > .container > .links
-  align-content: space-around
-  display: flex
-  flex-direction: row
-  flex-grow: 1
-  flex-wrap: wrap
-  justify-content: space-around
-  padding-top: 1%
+//.navbar > .container > .links
+//  align-content: space-around
+//  display: flex
+//  flex-direction: row
+//  flex-grow: 1
+//  flex-wrap: wrap
+//  justify-content: space-around
+//  padding-top: 1%
 
 .navbar-header > a > img
   height: 99%
