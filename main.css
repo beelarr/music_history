@@ -84,6 +84,9 @@ label span .custom-control-description {
   padding-top: 2%;
   text-align: center; }
 
+.song-list {
+  display: block; }
+
 .thumbnail > img h3 {
   display: inline-block;
   float: none; }

@@ -18,7 +18,31 @@ for (let i = 0; i < songs.length; i++){
     // console.log(songs[i]);
     let song_string = songs[i].replace('*' , '').replace('@' , '').replace('(', '').replace('!', '').replace('>','-');
     // console.log(song_string);
-    let song_string_edit = `<div>${song_string}</div>`
+
+    // *****SONG TITLE*******
+    let song_title = song_string.split('-')
+    song_title = song_title.shift()
+
+    // *****ARTIST NAME*******
+    let artist_name = song_string.split(' on ')
+    artist_name = artist_name.shift()
+    by_index = artist_name.indexOf('by')
+    artist_name = artist_name.slice(by_index + 3,)
+    console.log(artist_name)
+
+
+    // *****ALBUM NAME******
+
+    let album_name = song_string.split('album')
+
+    album_name = album_name[1]
+
+    console.log(album_name)
+
+
+
+    let song_string_edit = `<div class="title-container"<h4>${song_title}</h4></div>
+                             <div class="description container"><p>${artist_name} |${album_name} | Genre</p><p></p></div>`
 
     let placeholder = document.querySelector('div.song-list');
     placeholder.innerHTML += song_string_edit;
@@ -29,7 +53,7 @@ for (let i = 0; i < songs.length; i++){
 
 let add_form = document.querySelector('form');
 let add_button = document.querySelector('#add')
-console.log(add_form)
+// console.log(add_form)
 
 
 add_button.addEventListener('click', ()=>{
@@ -40,8 +64,8 @@ add_button.addEventListener('click', ()=>{
 
 // **********SLIDER**********
 
-$('#ex1').slider({
-    formatter: (value)=> {
-        return 'Current value: ' + value;
-    }
-});
+// $('#ex1').slider({
+//     formatter: (value)=> {
+//         return 'Current value: ' + value;
+//     }
+// });
