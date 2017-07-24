@@ -2,8 +2,8 @@
 $primary_color: #F8F8F8
 $border: #DDDDDD
 $button: #68C3A3
-$speed: 200ms
-$easing: cubic-bezier(0.7, 0, 0, 0.7)
+$speed: 1000ms
+$easing: cubic-bezier(.7, 0, 0, 0.7)
 $caropacity: .7
 
 
@@ -24,6 +24,12 @@ label span .custom-control-description
   text-align: right
   margin: 10%
   padding: 10%
+
+
+title
+  display: flex
+  font-size: 1.5em
+  font-weight: bold
 
 
 .carousel-inner > .item > .carousel-caption
@@ -53,14 +59,16 @@ label span .custom-control-description
   text-align: left
   padding-left: 7%
 
-
-
-
 .container-sidebar-left
   align-items: flex-start
   display: flex
   flex-direction: column
-  justify-content: space-between
+  justify-content: flex-start
+
+.container-sidebar-left
+  & .dropdown button
+    margin: 10%
+
 
 .custom-control
   display: flex
@@ -68,9 +76,17 @@ label span .custom-control-description
   justify-content: flex-start
   padding-right: 8%
 
+.song-list > .description-container
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+
+.description-container
+  & p
+  font-size: .5em
 
 #ex1Slider .slider-selection
-  background: #BABABA
+  background: #BABABAs
 
 
 
@@ -83,6 +99,10 @@ label span .custom-control-description
 //.container > .jumbotron > h1
 //  text-align: end
 //  padding-top: 15%
+
+
+.filter-button
+  margin-top: 1%
 
 .hide
   display: none
@@ -132,10 +152,15 @@ label span .custom-control-description
   padding-top: 2%
   text-align: center
 
+
+
 .song-list
   display: block
+  justify-content: flex-start
 
 
 .thumbnail > img h3
   display: inline-block
   float: none
+
+
