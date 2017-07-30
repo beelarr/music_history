@@ -111,6 +111,18 @@ show_page();
 });
 
 
+// ********************************************************************************
+
+
+// *******************DELETE BUTTON************************
+$(document).ready(function () {
+    $('.one-row').on('click', '#delete-btn', function () {
+        $(this).closest('tr').remove()
+
+    })
+});
+
+
 
 
 

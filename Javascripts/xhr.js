@@ -46,13 +46,14 @@
 music_log.load_items(loader_of_music)
 
 
-// *******************DELETE BUTTON************************
 
 
 
-$('.one-row').on('click', $('#delete-btn'), function () {
-    $(this).closest('tr').remove()
-    console.log('jquery')
-})
+
+// $('.one-row').on('click', $('#delete-btn'), function () {
+//     console.log('jquery ')
+//     $(this).closest('tr').remove()
+//     console.log('jquery')
+// })
 
 
