@@ -2,28 +2,28 @@
  * Created by beelarr on 7/29/17.
  */
 {
-    var Music_log = {};
+    var music_log = {};
     let music = [];
 
 
-    Music_log.load_items = function () {
-        $.ajax({
-            url: 'js/chatty.json',
-        }).done(function() {
+    music_log.load_items = function () {
+        var loader = new XMLHttpRequest()
+        loader.addEventListener('load', function () {
+            music = JSON.parse(this.responseText);
             loader_of_music(music);
         });
 
         loader.open('GET', 'music.json')
         loader.send()
     }
-}
 
+}
 
 {
     function loader_of_music(music) {
         music.forEach((e)=>{
-            $('.data').innerHTML +=
-            `<tr class="one-row">
+            document.querySelector('.data').innerHTML +=
+                `<tr class="one-row">
                   <th class="number" scope="row">${e.Number}</th>
                   <td class="year" >${e.Year}</td>
                   <td class="album">${e.Album}</td>
@@ -43,7 +43,8 @@
 
     }
 }
-Music_log.load_items(loader_of_music)
+music_log.load_items(loader_of_music)
+
 
 
 
