@@ -1,51 +1,103 @@
 
 $primary_color: #F8F8F8
 $border: #DDDDDD
-$speed: 200ms
-$easing: cubic-bezier(0.7, 0, 0, 0.7)
-$car_opacity: opacity(.7)
+$button: #68C3A3
+$speed: 1000ms
+$easing: cubic-bezier(.7, 0, 0, 0.7)
+$caropacity: .7
 
 
 body
   padding-top: 5%
 
+button .btn-primary
+  background-color: $button
+
 form
   border: solid 2px $border
   border-radius: 5px
+  margin-top: 10px
   padding: 2%
 
+label span .custom-control-description
+  text-align: right
+  margin: 10%
+  padding: 10%
+
+title
+  display: flex
+  font-size: 1.5em
+  font-weight: bold
+
 .carousel-inner > .item > .carousel-caption
-  $car_opacity
+  opacity: $caropacity
 
 .carousel-indicators
-  $car_opacity
-
+  opacity: $caropacity
 
 .container
   display: flex
   justify-content: space-around
 
-//.container > .jumbotron
-//  color: $primary_color
-//  background: url(img/slick_jones.jpg) center no-repeat
-//
-//
-//.container > .jumbotron > h1
-//  text-align: end
-//  padding-top: 15%
+.container-checkbox-main
+  display: flex
+  flex-direction: row
+
+
+.container-checkbox-right .container-checkbox-left
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+
+.container-right-bar
+  display: flex
+  justify-content: flex-start
+  text-align: left
+  padding-left: 7%
+
+.container-sidebar-left
+  align-items: flex-start
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+
+.container-sidebar-left
+  & .dropdown button
+    margin: 10%
+
+.custom-control
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  padding-right: 8%
+
+.song-list > .description-container
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+
+.description-container
+  & p
+  font-size: .5em
+
+#ex1Slider .slider-selection
+  background: #BABABAs
+
+.filter-button
+  margin-top: 1%
+
+.hide
+  display: none
 
 #myCarousel
+  height: 85%
+
   width: 85%
-
-
-
 
 .navbar-toggle
   overflow: hidden
   .icon-bar
-    transition: opacity,
     transition: opacity, transform
-    transition: opacity, transform,
     transition-duration: $speed
     transition-timing-function: $easing
   &:not(.collapsed) .icon-bar
@@ -57,18 +109,6 @@ form
     &:nth-child(3)
       transform: translateY(-6px) rotate(-45deg)
 
-
-
-
-//.navbar > .container > .links
-//  align-content: space-around
-//  display: flex
-//  flex-direction: row
-//  flex-grow: 1
-//  flex-wrap: wrap
-//  justify-content: space-around
-//  padding-top: 1%
-
 .navbar-header > a > img
   height: 99%
 
@@ -78,6 +118,12 @@ form
   padding-top: 2%
   text-align: center
 
+.song-list
+  display: block
+  justify-content: flex-start
+
 .thumbnail > img h3
   display: inline-block
   float: none
+
+

@@ -1,31 +1,91 @@
 body {
   padding-top: 5%; }
 
+button .btn-primary {
+  background-color: #68C3A3; }
+
 form {
   border: solid 2px #DDDDDD;
   border-radius: 5px;
+  margin-top: 10px;
   padding: 2%; }
 
+label span .custom-control-description {
+  text-align: right;
+  margin: 10%;
+  padding: 10%; }
+
+title {
+  display: flex;
+  font-size: 1.5em;
+  font-weight: bold; }
+
 .carousel-inner > .item > .carousel-caption {
-  opacity: 0.4; }
+  opacity: 0.7; }
 
 .carousel-indicators {
-  opacity: 0.4; }
+  opacity: 0.7; }
 
 .container {
   display: flex;
   justify-content: space-around; }
 
+.container-checkbox-main {
+  display: flex;
+  flex-direction: row; }
+
+.container-checkbox-right .container-checkbox-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; }
+
+.container-right-bar {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 7%; }
+
+.container-sidebar-left {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; }
+
+.container-sidebar-left .dropdown button {
+  margin: 10%; }
+
+.custom-control {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-right: 8%; }
+
+.song-list > .description-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }
+
+.description-container {
+  font-size: 0.5em; }
+
+#ex1Slider .slider-selection {
+  background: #BABABAs; }
+
+.filter-button {
+  margin-top: 1%; }
+
+.hide {
+  display: none; }
+
 #myCarousel {
+  height: 85%;
   width: 85%; }
 
 .navbar-toggle {
   overflow: hidden; }
   .navbar-toggle .icon-bar {
-    transition: opacity;
     transition: opacity, transform;
-    transition: opacity, transform;
-    transition-duration: 200ms;
+    transition-duration: 1000ms;
     transition-timing-function: cubic-bezier(0.7, 0, 0, 0.7); }
   .navbar-toggle:not(.collapsed) .icon-bar:nth-child(1) {
     transform: translateY(6px) rotate(45deg); }
@@ -42,6 +102,10 @@ form {
   justify-content: space-around;
   padding-top: 2%;
   text-align: center; }
+
+.song-list {
+  display: block;
+  justify-content: flex-start; }
 
 .thumbnail > img h3 {
   display: inline-block;
