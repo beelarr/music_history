@@ -97,6 +97,10 @@ title {
 .navbar-header > a > img {
   height: 99%; }
 
+.pagination-nav {
+  display: flex;
+  justify-content: space-around; }
+
 .row {
   display: flex;
   justify-content: space-around;
