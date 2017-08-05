@@ -6,7 +6,7 @@ $(function () {
 
 // **********VIEW HIDE SHOW**********
 let add_form = $('form');
-let add_button = $('#add')
+let add_button = $('#add');
 add_button.click( ()=>{
     add_form.toggleClass('hide')
 });
@@ -15,16 +15,14 @@ add_button.click( ()=>{
 
 let artist_input = $('#Artist');
 let album_input = $('#Album');
-let song_input = $('#Song')
-let submit_button = $('#lets-hear-it-button')
+let song_input = $('#Song');
+let submit_button = $('#lets-hear-it-button');
 
 
 submit_button.click( ()=>{
     input_handler(song_input.value, artist_input.value, album_input.value)
 
 });
-
-
 
 
 // **************PAGINATION OF FORM***********************
@@ -35,18 +33,18 @@ $(function () {
 
     page_size = 10;
     page_count = $('.one-row').length;
-    var current_page = 1
+    var current_page = 1;
 
 
     // ********PREPARE NAV**********
 
-    var nav = ''
-    var total_pages = Math.ceil(page_count / page_size)
+    var nav = '';
+    var total_pages = Math.ceil(page_count / page_size);
     for (var i = 0; i < total_pages; i++){
         // nav += `<li class='number'><a href="#"> ${i + 1} </a></li> `
     }
     $('.page_prev').after(nav);
-    $('.number').first().addClass('active')
+    $('.number').first().addClass('active');
 
         // *************************
 
@@ -57,7 +55,7 @@ show_page = function () {
 
         });
 
-}
+};
 show_page();
 
     $(".pagination li.number").click(function () {
@@ -87,9 +85,6 @@ show_page();
 
 
 });
-
-
-
 
 // *******************DELETE BUTTON************************
     $('.one-row').on('click', '#delete-btn', function () {

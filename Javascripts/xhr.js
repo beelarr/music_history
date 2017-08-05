@@ -14,17 +14,15 @@
             }
         })
 
-        };
+    };
 
-    }
-
-
+}
 
 {
     function loader_of_music(music) {
-        music.forEach((e) => {
-            $('.data').each(function () {
-                $(this).html(
+        music.forEach((e)=>{
+            $('.data').each((index, element)=> {
+                element.innerHTML +=
                     `<tr class="one-row">
                   <th class="number" scope="row">${e.Number}</th>
                   <td class="year" >${e.Year}</td>
@@ -39,14 +37,9 @@
                         </p>
                   </td>
               </tr>`
-                )
             })
-        })
+        });
     }
-
-
-
-
 }
 music_log.load_items(loader_of_music)
 
