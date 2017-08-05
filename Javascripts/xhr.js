@@ -6,24 +6,24 @@
     let music = [];
 
 
-    music_log.load_items = function () {
-        var loader = new XMLHttpRequest()
-        loader.addEventListener('load', function () {
-            music = JSON.parse(this.responseText);
-            loader_of_music(music);
-        });
+    music_log.load_items = function (music) {
+        $.ajax({
+            url: 'music.json',
+            success(result){
+                loader_of_music(result)
+            }
+        })
 
-        loader.open('GET', 'music.json')
-        loader.send()
-    }
+    };
 
 }
 
 {
     function loader_of_music(music) {
         music.forEach((e)=>{
-            document.querySelector('.data').innerHTML +=
-                `<tr class="one-row">
+            $('.data').each((index, element)=> {
+                element.innerHTML +=
+                    `<tr class="one-row">
                   <th class="number" scope="row">${e.Number}</th>
                   <td class="year" >${e.Year}</td>
                   <td class="album">${e.Album}</td>
@@ -37,10 +37,8 @@
                         </p>
                   </td>
               </tr>`
+            })
         });
-
-
-
     }
 }
 music_log.load_items(loader_of_music)
