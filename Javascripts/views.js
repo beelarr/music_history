@@ -2,7 +2,7 @@
  * Created by beelarr on 7/14/17.
  */
 
-$(function () {
+let getView = $(function () {
 
 // **********VIEW HIDE SHOW**********
 let add_form = $('form');
@@ -98,3 +98,4 @@ show_page();
     })
 });
 
+module.exports = {getView}
