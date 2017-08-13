@@ -155,6 +155,102 @@
     <div class="song-list"></div>
   </main>
 
+<!--**********MODAL**********-->
+
+  <div id='filter' class="modal fade">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-white text-center text-white">
+                  <h4 class="modal-title">Filter</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span class="text-right" aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <label for="song-slider">Song Length</label>
+                      <input type="range" id="song-slider" min="10" value="10" max="2000" step="100">
+                      <div class="form-group">
+                          <label  for="artist-filter">Artist</label>
+                          <select class='form-control' id='artist-filter' name='user_role'>
+                              <option value="full stack js developer">Select Artist</option>
+                          </select>
+                          <label  for="album-filter">Album</label>
+                          <select class='form-control' id='album-filter' name='user_role'>
+                              <option value="full stack js developer">Select Album</option>
+                          </select>
+                      </div>
+                      <hr class='my-4'>
+                      <div class="form-group">
+
+
+
+                      </div>
+
+                      <h5 class='mb-4'>Genre</h5>
+                      <div class="row form group">
+                          <div class="col-lg-6">
+                              <div class="form-check">
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description">Rock</span>
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description">Pop</span>
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description">Blues</span>
+                                  </label>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-6">
+                              <div class="form-check">
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description">Classical</span>
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description">Jazz</span>
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description">Hip Hop</span>
+                                  </label>
+                              </div>
+                          </div>
+
+                      </div>
+
+
+                      <hr class='mb-4'>
+                      <div class="container text-center">
+                          <button type="submit" class="btn btn-secondary btn-lg ">Filter</button>
+                      </div>
+
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -98,4 +98,12 @@ show_page();
     })
 });
 
+// *********MODAL**********
+
+
+$(function () {
+    $('#filter').modal('show');
+
+});
+
 module.exports = {getView}
