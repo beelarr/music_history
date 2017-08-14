@@ -10,6 +10,9 @@ form {
   margin-top: 10px;
   padding: 2%; }
 
+input .custom-control-input {
+  margin-right: 50px; }
+
 label span .custom-control-description {
   text-align: right;
   margin: 10%;
@@ -39,6 +42,10 @@ title {
   flex-direction: column;
   justify-content: space-around; }
 
+.container-filter {
+  display: flex;
+  justify-content: space-around; }
+
 .container-right-bar {
   display: flex;
   justify-content: flex-start;
@@ -60,11 +67,6 @@ title {
   justify-content: flex-start;
   padding-right: 8%; }
 
-.song-list > .description-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start; }
-
 .description-container {
   font-size: 0.5em; }
 
@@ -72,7 +74,8 @@ title {
   background: #BABABAs; }
 
 .filter-button {
-  margin-top: 1%; }
+  display: flex;
+  justify-content: space-around; }
 
 .hide {
   display: none; }
@@ -106,6 +109,11 @@ title {
   justify-content: space-around;
   padding-top: 2%;
   text-align: center; }
+
+.song-list > .description-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }
 
 .song-list {
   display: block;

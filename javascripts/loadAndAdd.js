@@ -1,8 +1,10 @@
+"use strict";
+
 $(function () {
 
-    var musicArray
+    var musicArray;
 
-    let loaderOfMusic = function (music) {
+    var loaderOfMusic = function (music) {
         $.ajax({
             url: 'music.json'
         })
@@ -24,26 +26,26 @@ $(function () {
                                 </p>
                           </td>
                       </tr>`
-                    )
-                })
-            })
+                    );
+                });
+            });
 
     };
 
 let addSong = function () {
-        let songObj = {}
-        songObj.Artist =  $('#Artist').val()
-        songObj.Album = ('#Album').val()
-        songObj.Song = ("#Song").val()
-        musicArray.push(songObj)
-}
+        let songObj = {};
+        songObj.Artist =  $('#Artist').val();
+        songObj.Album = ('#Album').val();
+        songObj.Song = ("#Song").val();
+        musicArray.push(songObj);
+};
 
-});
+
 
 $("#lets-hear-it-button").click(() => {
-    addSong()
+    addSong();
 });
 
 module.exports = {loaderOfMusic, addSong};
 
-
+});
