@@ -7,3 +7,6 @@
 *.iml
 out
 gen
+lib/node_modules
+sass/main.css
+sass/main.css.map
