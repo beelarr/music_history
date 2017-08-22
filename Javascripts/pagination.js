@@ -3,7 +3,7 @@
 let loader = require('./loader.js');
 
 
-Music_log.load_items()
+loader.load_items()
     .then((data) => {
     console.log(data);
 

@@ -2,7 +2,7 @@
   "name": "modules",
   "version": "0.1.0",
   "devDependencies": {
-    "firebase": "^4.3.0",
+    "browserify": "^13.1.1",
     "grunt": "^0.4.5",
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-jshint": "^0.11.3",
@@ -12,7 +12,7 @@
     "matchdep": "^0.3.0"
   },
   "dependencies": {
-    "handlebars": "^4.0.6",
+    "firebase": "^4.3.0",
     "hbsfy": "^2.7.0",
     "jquery-timepicker": "^1.3.3",
     "moment": "^2.18.1"
