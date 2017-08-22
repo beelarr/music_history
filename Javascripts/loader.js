@@ -6,7 +6,7 @@ let getSongs = function (user) {
             url: `https://music-history-ad2de.firebaseio.com/songs.json?orderBy="Number"&equalTo="${user}"`
         }).done((songData) => {
             resolve(songData);
-        }).reject((error) => {
+        }).fail((error) => {
             reject(error);
         });
     });

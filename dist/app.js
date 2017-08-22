@@ -35,7 +35,7 @@ $("#lets-hear-it-button").click(function (e) {
 });
 
 });
-},{"./pagination":4,"firebase":94}],2:[function(require,module,exports){
+},{"./pagination":4,"firebase":95}],2:[function(require,module,exports){
 "use strict";
 
 let getSongs = function (user) {
@@ -44,7 +44,7 @@ let getSongs = function (user) {
             url: `https://music-history-ad2de.firebaseio.com/songs.json?orderBy="Number"&equalTo="${user}"`
         }).done((songData) => {
             resolve(songData);
-        }).reject((error) => {
+        }).fail((error) => {
             reject(error);
         });
     });
@@ -101,6 +101,110 @@ let editSong = function (songFormObj, songID) {
 
 module.exports = {getSongs, addSong, getSong, deleteSong, editSong};
 
+
+
+
+
+
+
+
+
+
+
+
+},{}],3:[function(require,module,exports){
+"use strict";
+
+let loader = require('./loader');
+let views = require('./views');
+let pagination = require('./pagination');
+let post = require('./firebase-post');
+let dom = require('./toDaDOM');
+},{"./firebase-post":1,"./loader":2,"./pagination":4,"./toDaDOM":5,"./views":6}],4:[function(require,module,exports){
+// "use strict";
+//
+// let loader = require('./loader.js');
+//
+//
+// loader.load_items()
+//     .then((data) => {
+//     console.log(data);
+//
+//     let page_size = 10;
+//     let page_count = $('.one-row').length;
+//     var current_page = 1;
+//
+//
+//     // ********PREPARE NAV**********
+//
+//     var nav = '';
+//     var total_pages = Math.ceil(page_count / page_size);
+//     for (var i = 0; i < total_pages; i++){
+//         // nav += `<li class='number'><a href="#"> ${i + 1} </a></li> `
+//     }
+//     $('.page_prev').after(nav);
+//     $('.number').first().addClass('active');
+//
+//     // *************************
+//
+//     let show_page = function () {
+//         $('.one-row').hide().each(function (n) {
+//             if (n >= page_size * (current_page - 1) && n < page_size * current_page)
+//                 $(this).show();
+//
+//         });
+//
+//     };
+//     show_page();
+//
+//     $(".pagination li.number").click(function () {
+//         $(".pagination li").removeClass('active');
+//         $(this).addClass('active');
+//         current_page = parseInt($(this).text());
+//         show_page();
+//
+//     });
+//     $('.pagination li.page_prev').click(function () {
+//         if ($(this).next().is('active')) return;
+//         $('.number.acitve').removeClass('active').prev().addClass('active');
+//         current_page = current_page > 1 ? (current_page - 1) : 1;
+//         show_page();
+//
+//     });
+//
+//     $('.pagination li.page-next').click(function () {
+//         if ($(this).prev().is('active')) return;
+//
+//         $('.number.active').removeClass('active').next().addClass('active');
+//
+//         current_page = current_page < total_pages ? (current_page + 1) : total_pages;
+//         show_page();
+//
+//     });
+//
+//
+//
+//     // *******************DELETE BUTTON************************
+//     $("#delete-btn").click(function () {
+//         console.log('delete');
+//         $(this).closest('tr').remove();
+//
+//     });
+// });
+//
+// // });
+
+},{}],5:[function(require,module,exports){
+"use strict";
+
+let loader = require('./loader');
+
+loader.getSongs()
+    .then((songList) => {
+        console.log(songList);
+
+    });
+
 // function loader_of_music(music) {
 //     music.forEach((e) => {
 //         $('.data').each((index, element) => {
@@ -122,98 +226,7 @@ module.exports = {getSongs, addSong, getSong, deleteSong, editSong};
 //         });
 //     });
 // }
-
-
-
-
-
-
-
-
-
-
-},{}],3:[function(require,module,exports){
-"use strict";
-
-let loader = require('./loader');
-let views = require('./views');
-let pagination = require('./pagination');
-let post = require('./firebase-post');
-},{"./firebase-post":1,"./loader":2,"./pagination":4,"./views":5}],4:[function(require,module,exports){
-"use strict";
-
-let loader = require('./loader.js');
-
-
-loader.load_items()
-    .then((data) => {
-    console.log(data);
-
-    let page_size = 10;
-    let page_count = $('.one-row').length;
-    var current_page = 1;
-
-
-    // ********PREPARE NAV**********
-
-    var nav = '';
-    var total_pages = Math.ceil(page_count / page_size);
-    for (var i = 0; i < total_pages; i++){
-        // nav += `<li class='number'><a href="#"> ${i + 1} </a></li> `
-    }
-    $('.page_prev').after(nav);
-    $('.number').first().addClass('active');
-
-    // *************************
-
-    let show_page = function () {
-        $('.one-row').hide().each(function (n) {
-            if (n >= page_size * (current_page - 1) && n < page_size * current_page)
-                $(this).show();
-
-        });
-
-    };
-    show_page();
-
-    $(".pagination li.number").click(function () {
-        $(".pagination li").removeClass('active');
-        $(this).addClass('active');
-        current_page = parseInt($(this).text());
-        show_page();
-
-    });
-    $('.pagination li.page_prev').click(function () {
-        if ($(this).next().is('active')) return;
-        $('.number.acitve').removeClass('active').prev().addClass('active');
-        current_page = current_page > 1 ? (current_page - 1) : 1;
-        show_page();
-
-    });
-
-    $('.pagination li.page-next').click(function () {
-        if ($(this).prev().is('active')) return;
-
-        $('.number.active').removeClass('active').next().addClass('active');
-
-        current_page = current_page < total_pages ? (current_page + 1) : total_pages;
-        show_page();
-
-    });
-
-
-
-    // *******************DELETE BUTTON************************
-    $("#delete-btn").click(function () {
-        console.log('delete');
-        $(this).closest('tr').remove();
-
-    });
-});
-
-// });
-
-},{"./loader.js":2}],5:[function(require,module,exports){
+},{"./loader":2}],6:[function(require,module,exports){
 "use strict";
 
 $(function () {
@@ -239,7 +252,7 @@ $(function () {
     });
 
 });
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -425,7 +438,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -463,7 +476,7 @@ exports.default = firebase;
 module.exports = exports['default'];
 
 
-},{"./app/firebase_app":9,"./utils/shims":152}],8:[function(require,module,exports){
+},{"./app/firebase_app":10,"./utils/shims":153}],9:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -552,7 +565,7 @@ var ErrorFactory = function () {
 exports.ErrorFactory = ErrorFactory;
 
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -932,7 +945,7 @@ var errors = {
 var appErrors = new _errors.ErrorFactory('app', 'Firebase', errors);
 
 
-},{"../utils/deep_copy":144,"../utils/promise":151,"./errors":8,"./subscribe":10}],10:[function(require,module,exports){
+},{"../utils/deep_copy":145,"../utils/promise":152,"./errors":9,"./subscribe":11}],11:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -1156,7 +1169,7 @@ function noop() {
 }
 
 
-},{"../utils/promise":151}],11:[function(require,module,exports){
+},{"../utils/promise":152}],12:[function(require,module,exports){
 (function (global){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
@@ -1458,7 +1471,7 @@ Z(Lg,"credential",Ng,[V("verificationId"),V("verificationCode")]);Y(Lg.prototype
 c){a=new T(a);c({INTERNAL:{getUid:r(a.getUid,a),getToken:r(a.Cf,a),addAuthTokenListener:r(a.hf,a),removeAuthTokenListener:r(a.gg,a)}});return a},a,function(a,c){if("create"===a)try{c.auth()}catch(d){}});firebase.INTERNAL.extendNamespace({User:S})}else throw Error("Cannot find the firebase namespace; be sure to include firebase-app.js before this library.");})();}).call(this);
 }).call(typeof global !== undefined ? global : typeof self !== undefined ? self : typeof window !== undefined ? window : {});
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./app":7}],12:[function(require,module,exports){
+},{"./app":8}],13:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/
@@ -1558,7 +1571,7 @@ function registerDatabase(instance) {
 registerDatabase(_app2.default);
 
 
-},{"./app":7,"./database/api/Database":14,"./database/api/Query":15,"./database/api/Reference":16,"./database/api/internal":18,"./database/api/test_access":20,"./database/core/RepoManager":27,"./database/core/util/util":71,"./utils/environment":145}],13:[function(require,module,exports){
+},{"./app":8,"./database/api/Database":15,"./database/api/Query":16,"./database/api/Reference":17,"./database/api/internal":19,"./database/api/test_access":21,"./database/core/RepoManager":28,"./database/core/util/util":72,"./utils/environment":146}],14:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -1741,7 +1754,7 @@ var DataSnapshot = function () {
 exports.DataSnapshot = DataSnapshot;
 
 
-},{"../../utils/validation":155,"../core/snap/indexes/PriorityIndex":49,"../core/util/Path":65,"../core/util/validation":72}],14:[function(require,module,exports){
+},{"../../utils/validation":156,"../core/snap/indexes/PriorityIndex":50,"../core/util/Path":66,"../core/util/validation":73}],15:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -1888,7 +1901,7 @@ var DatabaseInternals = function () {
 exports.DatabaseInternals = DatabaseInternals;
 
 
-},{"../../utils/promise":151,"../../utils/validation":155,"../core/Repo":25,"../core/RepoManager":27,"../core/util/Path":65,"../core/util/libs/parser":70,"../core/util/util":71,"../core/util/validation":72,"./Reference":16}],15:[function(require,module,exports){
+},{"../../utils/promise":152,"../../utils/validation":156,"../core/Repo":26,"../core/RepoManager":28,"../core/util/Path":66,"../core/util/libs/parser":71,"../core/util/util":72,"../core/util/validation":73,"./Reference":17}],16:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -2387,7 +2400,7 @@ var Query = function () {
 exports.Query = Query;
 
 
-},{"../../utils/assert":141,"../../utils/promise":151,"../../utils/validation":155,"../core/snap/indexes/KeyIndex":47,"../core/snap/indexes/PathIndex":48,"../core/snap/indexes/PriorityIndex":49,"../core/snap/indexes/ValueIndex":50,"../core/util/Path":65,"../core/util/util":71,"../core/util/validation":72,"../core/view/EventRegistration":80}],16:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/promise":152,"../../utils/validation":156,"../core/snap/indexes/KeyIndex":48,"../core/snap/indexes/PathIndex":49,"../core/snap/indexes/PriorityIndex":50,"../core/snap/indexes/ValueIndex":51,"../core/util/Path":66,"../core/util/util":72,"../core/util/validation":73,"../core/view/EventRegistration":81}],17:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -2708,7 +2721,7 @@ _Query.Query.__referenceConstructor = Reference;
 _SyncPoint.SyncPoint.__referenceConstructor = Reference;
 
 
-},{"../../utils/promise":151,"../../utils/validation":155,"../core/Repo":25,"../core/SyncPoint":32,"../core/util/NextPushId":63,"../core/util/Path":65,"../core/util/util":71,"../core/util/validation":72,"../core/view/QueryParams":81,"./Query":15,"./TransactionResult":17,"./onDisconnect":19}],17:[function(require,module,exports){
+},{"../../utils/promise":152,"../../utils/validation":156,"../core/Repo":26,"../core/SyncPoint":33,"../core/util/NextPushId":64,"../core/util/Path":66,"../core/util/util":72,"../core/util/validation":73,"../core/view/QueryParams":82,"./Query":16,"./TransactionResult":18,"./onDisconnect":20}],18:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -2759,7 +2772,7 @@ var TransactionResult = function () {
 exports.TransactionResult = TransactionResult;
 
 
-},{"../../utils/validation":155}],18:[function(require,module,exports){
+},{"../../utils/validation":156}],19:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -2825,7 +2838,7 @@ var interceptServerData = exports.interceptServerData = function interceptServer
 };
 
 
-},{"../realtime/BrowserPollConnection":88,"../realtime/WebSocketConnection":92}],19:[function(require,module,exports){
+},{"../realtime/BrowserPollConnection":89,"../realtime/WebSocketConnection":93}],20:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -2952,7 +2965,7 @@ var OnDisconnect = function () {
 exports.OnDisconnect = OnDisconnect;
 
 
-},{"../../utils/promise":151,"../../utils/validation":155,"../core/util/util":71,"../core/util/validation":72}],20:[function(require,module,exports){
+},{"../../utils/promise":152,"../../utils/validation":156,"../core/util/util":72,"../core/util/validation":73}],21:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -3048,7 +3061,7 @@ var forceRestClient = exports.forceRestClient = function forceRestClient(_forceR
 };
 
 
-},{"../core/PersistentConnection":23,"../core/RepoInfo":26,"../core/RepoManager":27,"../realtime/Connection":89}],21:[function(require,module,exports){
+},{"../core/PersistentConnection":24,"../core/RepoInfo":27,"../core/RepoManager":28,"../realtime/Connection":90}],22:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -3128,7 +3141,7 @@ var AuthTokenProvider = function () {
 exports.AuthTokenProvider = AuthTokenProvider;
 
 
-},{"./util/util":71}],22:[function(require,module,exports){
+},{"./util/util":72}],23:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -3350,7 +3363,7 @@ var CompoundWrite = function () {
 exports.CompoundWrite = CompoundWrite;
 
 
-},{"../../utils/assert":141,"../../utils/obj":150,"./snap/Node":43,"./snap/indexes/PriorityIndex":49,"./util/ImmutableTree":62,"./util/Path":65}],23:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/obj":151,"./snap/Node":44,"./snap/indexes/PriorityIndex":50,"./util/ImmutableTree":63,"./util/Path":66}],24:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -4144,7 +4157,7 @@ var PersistentConnection = function (_super) {
 exports.PersistentConnection = PersistentConnection;
 
 
-},{"../../app":7,"../../utils/assert":141,"../../utils/constants":142,"../../utils/environment":145,"../../utils/json":148,"../../utils/jwt":149,"../../utils/obj":150,"../realtime/Connection":89,"./ServerActions":29,"./util/OnlineMonitor":64,"./util/Path":65,"./util/VisibilityMonitor":69,"./util/util":71}],24:[function(require,module,exports){
+},{"../../app":8,"../../utils/assert":142,"../../utils/constants":143,"../../utils/environment":146,"../../utils/json":149,"../../utils/jwt":150,"../../utils/obj":151,"../realtime/Connection":90,"./ServerActions":30,"./util/OnlineMonitor":65,"./util/Path":66,"./util/VisibilityMonitor":70,"./util/util":72}],25:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -4340,7 +4353,7 @@ var ReadonlyRestClient = function (_super) {
 exports.ReadonlyRestClient = ReadonlyRestClient;
 
 
-},{"../../utils/assert":141,"../../utils/json":148,"../../utils/obj":150,"../../utils/util":154,"./ServerActions":29,"./util/util":71}],25:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/json":149,"../../utils/obj":151,"../../utils/util":155,"./ServerActions":30,"./util/util":72}],26:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -4886,7 +4899,7 @@ var Repo = function () {
 exports.Repo = Repo;
 
 
-},{"../../utils/json":148,"../../utils/obj":150,"../api/Database":14,"./AuthTokenProvider":21,"./PersistentConnection":23,"./ReadonlyRestClient":24,"./SnapshotHolder":30,"./SparseSnapshotTree":31,"./SyncTree":33,"./snap/nodeFromJSON":51,"./stats/StatsListener":54,"./stats/StatsManager":55,"./stats/StatsReporter":56,"./util/Path":65,"./util/ServerValues":66,"./util/util":71,"./view/EventQueue":79}],26:[function(require,module,exports){
+},{"../../utils/json":149,"../../utils/obj":151,"../api/Database":15,"./AuthTokenProvider":22,"./PersistentConnection":24,"./ReadonlyRestClient":25,"./SnapshotHolder":31,"./SparseSnapshotTree":32,"./SyncTree":34,"./snap/nodeFromJSON":52,"./stats/StatsListener":55,"./stats/StatsManager":56,"./stats/StatsReporter":57,"./util/Path":66,"./util/ServerValues":67,"./util/util":72,"./view/EventQueue":80}],27:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -5011,7 +5024,7 @@ var RepoInfo = function () {
 exports.RepoInfo = RepoInfo;
 
 
-},{"../../utils/assert":141,"../../utils/obj":150,"../realtime/Constants":90,"./storage/storage":59}],27:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/obj":151,"../realtime/Constants":91,"./storage/storage":60}],28:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -5147,7 +5160,7 @@ var RepoManager = function () {
 exports.RepoManager = RepoManager;
 
 
-},{"../../utils/obj":150,"./Repo":25,"./Repo_transaction":28,"./util/libs/parser":70,"./util/util":71,"./util/validation":72}],28:[function(require,module,exports){
+},{"../../utils/obj":151,"./Repo":26,"./Repo_transaction":29,"./util/libs/parser":71,"./util/util":72,"./util/validation":73}],29:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -5719,7 +5732,7 @@ _Repo.Repo.prototype.abortTransactionsOnNode_ = function (node) {
 };
 
 
-},{"../../utils/assert":141,"../../utils/obj":150,"../api/DataSnapshot":13,"../api/Reference":16,"./Repo":25,"./snap/ChildrenNode":40,"./snap/indexes/PriorityIndex":49,"./snap/nodeFromJSON":51,"./util/Path":65,"./util/ServerValues":66,"./util/Tree":68,"./util/util":71,"./util/validation":72}],29:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/obj":151,"../api/DataSnapshot":14,"../api/Reference":17,"./Repo":26,"./snap/ChildrenNode":41,"./snap/indexes/PriorityIndex":50,"./snap/nodeFromJSON":52,"./util/Path":66,"./util/ServerValues":67,"./util/Tree":69,"./util/util":72,"./util/validation":73}],30:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -5797,7 +5810,7 @@ var ServerActions = function () {
 exports.ServerActions = ServerActions;
 
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -5845,7 +5858,7 @@ var SnapshotHolder = function () {
 exports.SnapshotHolder = SnapshotHolder;
 
 
-},{"./snap/ChildrenNode":40}],31:[function(require,module,exports){
+},{"./snap/ChildrenNode":41}],32:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -6022,7 +6035,7 @@ var SparseSnapshotTree = function () {
 exports.SparseSnapshotTree = SparseSnapshotTree;
 
 
-},{"./snap/indexes/PriorityIndex":49,"./util/CountedSet":60,"./util/Path":65}],32:[function(require,module,exports){
+},{"./snap/indexes/PriorityIndex":50,"./util/CountedSet":61,"./util/Path":66}],33:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -6271,7 +6284,7 @@ var SyncPoint = function () {
 exports.SyncPoint = SyncPoint;
 
 
-},{"../../utils/assert":141,"../../utils/obj":150,"./snap/ChildrenNode":40,"./view/CacheNode":73,"./view/View":82,"./view/ViewCache":83}],33:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/obj":151,"./snap/ChildrenNode":41,"./view/CacheNode":74,"./view/View":83,"./view/ViewCache":84}],34:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -6980,7 +6993,7 @@ var SyncTree = function () {
 exports.SyncTree = SyncTree;
 
 
-},{"../../utils/assert":141,"../../utils/obj":150,"./SyncPoint":32,"./WriteTree":34,"./operation/AckUserWrite":35,"./operation/ListenComplete":36,"./operation/Merge":37,"./operation/Operation":38,"./operation/Overwrite":39,"./snap/ChildrenNode":40,"./util/ImmutableTree":62,"./util/Path":65,"./util/util":71}],34:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/obj":151,"./SyncPoint":33,"./WriteTree":35,"./operation/AckUserWrite":36,"./operation/ListenComplete":37,"./operation/Merge":38,"./operation/Operation":39,"./operation/Overwrite":40,"./snap/ChildrenNode":41,"./util/ImmutableTree":63,"./util/Path":66,"./util/util":72}],35:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -7591,7 +7604,7 @@ var WriteTreeRef = function () {
 exports.WriteTreeRef = WriteTreeRef;
 
 
-},{"../../utils/assert":141,"../../utils/obj":150,"./CompoundWrite":22,"./snap/ChildrenNode":40,"./snap/indexes/PriorityIndex":49,"./util/Path":65}],35:[function(require,module,exports){
+},{"../../utils/assert":142,"../../utils/obj":151,"./CompoundWrite":23,"./snap/ChildrenNode":41,"./snap/indexes/PriorityIndex":50,"./util/Path":66}],36:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -7663,7 +7676,7 @@ var AckUserWrite = function () {
 exports.AckUserWrite = AckUserWrite;
 
 
-},{"../../../utils/assert":141,"../util/Path":65,"./Operation":38}],36:[function(require,module,exports){
+},{"../../../utils/assert":142,"../util/Path":66,"./Operation":39}],37:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -7719,7 +7732,7 @@ var ListenComplete = function () {
 exports.ListenComplete = ListenComplete;
 
 
-},{"../util/Path":65,"./Operation":38}],37:[function(require,module,exports){
+},{"../util/Path":66,"./Operation":39}],38:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -7804,7 +7817,7 @@ var Merge = function () {
 exports.Merge = Merge;
 
 
-},{"../../../utils/assert":141,"../util/Path":65,"./Operation":38,"./Overwrite":39}],38:[function(require,module,exports){
+},{"../../../utils/assert":142,"../util/Path":66,"./Operation":39,"./Overwrite":40}],39:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -7887,7 +7900,7 @@ var OperationSource = function () {
 exports.OperationSource = OperationSource;
 
 
-},{"../../../utils/assert":141}],39:[function(require,module,exports){
+},{"../../../utils/assert":142}],40:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -7945,7 +7958,7 @@ var Overwrite = function () {
 exports.Overwrite = Overwrite;
 
 
-},{"../util/Path":65,"./Operation":38}],40:[function(require,module,exports){
+},{"../util/Path":66,"./Operation":39}],41:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -8448,7 +8461,7 @@ _LeafNode.LeafNode.__childrenNodeConstructor = ChildrenNode;
 (0, _PriorityIndex.setMaxNode)(MAX_NODE);
 
 
-},{"../../../utils/assert":141,"../util/SortedMap":67,"../util/util":71,"./IndexMap":41,"./LeafNode":42,"./Node":43,"./comparators":45,"./indexes/KeyIndex":47,"./indexes/PriorityIndex":49,"./snap":52}],41:[function(require,module,exports){
+},{"../../../utils/assert":142,"../util/SortedMap":68,"../util/util":72,"./IndexMap":42,"./LeafNode":43,"./Node":44,"./comparators":46,"./indexes/KeyIndex":48,"./indexes/PriorityIndex":50,"./snap":53}],42:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -8635,7 +8648,7 @@ var IndexMap = function () {
 exports.IndexMap = IndexMap;
 
 
-},{"../../../utils/assert":141,"../../../utils/obj":150,"./Node":43,"./childSet":44,"./indexes/KeyIndex":47,"./indexes/PriorityIndex":49}],42:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/obj":151,"./Node":44,"./childSet":45,"./indexes/KeyIndex":48,"./indexes/PriorityIndex":50}],43:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -8895,7 +8908,7 @@ var LeafNode = function () {
 exports.LeafNode = LeafNode;
 
 
-},{"../../../utils/assert":141,"../util/util":71,"./snap":52}],43:[function(require,module,exports){
+},{"../../../utils/assert":142,"../util/util":72,"./snap":53}],44:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -8946,7 +8959,7 @@ var NamedNode = function () {
 exports.NamedNode = NamedNode;
 
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9084,7 +9097,7 @@ var buildChildSet = exports.buildChildSet = function buildChildSet(childList, cm
 };
 
 
-},{"../util/SortedMap":67}],45:[function(require,module,exports){
+},{"../util/SortedMap":68}],46:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9121,7 +9134,7 @@ function NAME_COMPARATOR(left, right) {
 }
 
 
-},{"../util/util":71}],46:[function(require,module,exports){
+},{"../util/util":72}],47:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9190,7 +9203,7 @@ var Index = function () {
 exports.Index = Index;
 
 
-},{"../../util/util":71,"../Node":43}],47:[function(require,module,exports){
+},{"../../util/util":72,"../Node":44}],48:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9314,7 +9327,7 @@ exports.KeyIndex = KeyIndex;
 var KEY_INDEX = exports.KEY_INDEX = new KeyIndex();
 
 
-},{"../../../../utils/assert":141,"../../util/util":71,"../Node":43,"./Index":46}],48:[function(require,module,exports){
+},{"../../../../utils/assert":142,"../../util/util":72,"../Node":44,"./Index":47}],49:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9436,7 +9449,7 @@ var PathIndex = function (_super) {
 exports.PathIndex = PathIndex;
 
 
-},{"../../../../utils/assert":141,"../../util/util":71,"../ChildrenNode":40,"../Node":43,"../nodeFromJSON":51,"./Index":46}],49:[function(require,module,exports){
+},{"../../../../utils/assert":142,"../../util/util":72,"../ChildrenNode":41,"../Node":44,"../nodeFromJSON":52,"./Index":47}],50:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9566,7 +9579,7 @@ exports.PriorityIndex = PriorityIndex;
 var PRIORITY_INDEX = exports.PRIORITY_INDEX = new PriorityIndex();
 
 
-},{"../../util/util":71,"../LeafNode":42,"../Node":43,"./Index":46}],50:[function(require,module,exports){
+},{"../../util/util":72,"../LeafNode":43,"../Node":44,"./Index":47}],51:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9684,7 +9697,7 @@ exports.ValueIndex = ValueIndex;
 var VALUE_INDEX = exports.VALUE_INDEX = new ValueIndex();
 
 
-},{"../../util/util":71,"../Node":43,"../nodeFromJSON":51,"./Index":46}],51:[function(require,module,exports){
+},{"../../util/util":72,"../Node":44,"../nodeFromJSON":52,"./Index":47}],52:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9803,7 +9816,7 @@ function nodeFromJSON(json, priority) {
 (0, _PriorityIndex.setNodeFromJSON)(nodeFromJSON);
 
 
-},{"../../../utils/assert":141,"../../../utils/obj":150,"./ChildrenNode":40,"./IndexMap":41,"./LeafNode":42,"./Node":43,"./childSet":44,"./comparators":45,"./indexes/PriorityIndex":49}],52:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/obj":151,"./ChildrenNode":41,"./IndexMap":42,"./LeafNode":43,"./Node":44,"./childSet":45,"./comparators":46,"./indexes/PriorityIndex":50}],53:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9868,7 +9881,7 @@ var validatePriorityNode = exports.validatePriorityNode = function validatePrior
 };
 
 
-},{"../../../utils/assert":141,"../../../utils/obj":150,"../util/util":71}],53:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/obj":151,"../util/util":72}],54:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9923,7 +9936,7 @@ var StatsCollection = function () {
 exports.StatsCollection = StatsCollection;
 
 
-},{"../../../utils/deep_copy":144,"../../../utils/obj":150}],54:[function(require,module,exports){
+},{"../../../utils/deep_copy":145,"../../../utils/obj":151}],55:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -9978,7 +9991,7 @@ var StatsListener = function () {
 exports.StatsListener = StatsListener;
 
 
-},{"../../../utils/obj":150}],55:[function(require,module,exports){
+},{"../../../utils/obj":151}],56:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10029,7 +10042,7 @@ var StatsManager = function () {
 exports.StatsManager = StatsManager;
 
 
-},{"./StatsCollection":53}],56:[function(require,module,exports){
+},{"./StatsCollection":54}],57:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10109,7 +10122,7 @@ var StatsReporter = function () {
 exports.StatsReporter = StatsReporter;
 
 
-},{"../../../utils/obj":150,"../util/util":71,"./StatsListener":54}],57:[function(require,module,exports){
+},{"../../../utils/obj":151,"../util/util":72,"./StatsListener":55}],58:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10200,7 +10213,7 @@ var DOMStorageWrapper = function () {
 exports.DOMStorageWrapper = DOMStorageWrapper;
 
 
-},{"../../../utils/json":148}],58:[function(require,module,exports){
+},{"../../../utils/json":149}],59:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10260,7 +10273,7 @@ var MemoryStorage = function () {
 exports.MemoryStorage = MemoryStorage;
 
 
-},{"../../../utils/obj":150}],59:[function(require,module,exports){
+},{"../../../utils/obj":151}],60:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10322,7 +10335,7 @@ var PersistentStorage = exports.PersistentStorage = createStoragefor('localStora
 var SessionStorage = exports.SessionStorage = createStoragefor('sessionStorage');
 
 
-},{"./DOMStorageWrapper":57,"./MemoryStorage":58}],60:[function(require,module,exports){
+},{"./DOMStorageWrapper":58,"./MemoryStorage":59}],61:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10430,7 +10443,7 @@ var CountedSet = function () {
 exports.CountedSet = CountedSet;
 
 
-},{"../../../utils/obj":150}],61:[function(require,module,exports){
+},{"../../../utils/obj":151}],62:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10518,7 +10531,7 @@ var EventEmitter = function () {
 exports.EventEmitter = EventEmitter;
 
 
-},{"../../../utils/assert":141}],62:[function(require,module,exports){
+},{"../../../utils/assert":142}],63:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10872,7 +10885,7 @@ var ImmutableTree = function () {
 exports.ImmutableTree = ImmutableTree;
 
 
-},{"../../../utils/obj":150,"./Path":65,"./SortedMap":67,"./util":71}],63:[function(require,module,exports){
+},{"../../../utils/obj":151,"./Path":66,"./SortedMap":68,"./util":72}],64:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -10959,7 +10972,7 @@ var nextPushId = exports.nextPushId = function () {
      */
 
 
-},{"../../../utils/assert":141}],64:[function(require,module,exports){
+},{"../../../utils/assert":142}],65:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -11065,7 +11078,7 @@ var OnlineMonitor = function (_super) {
 exports.OnlineMonitor = OnlineMonitor;
 
 
-},{"../../../utils/assert":141,"../../../utils/environment":145,"./EventEmitter":61}],65:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/environment":146,"./EventEmitter":62}],66:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -11381,7 +11394,7 @@ var ValidationPath = function () {
 exports.ValidationPath = ValidationPath;
 
 
-},{"../../../utils/utf8":153,"./util":71}],66:[function(require,module,exports){
+},{"../../../utils/utf8":154,"./util":72}],67:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -11498,7 +11511,7 @@ var resolveDeferredValueSnapshot = exports.resolveDeferredValueSnapshot = functi
 };
 
 
-},{"../../../utils/assert":141,"../SparseSnapshotTree":31,"../snap/LeafNode":42,"../snap/indexes/PriorityIndex":49,"../snap/nodeFromJSON":51,"./Path":65}],67:[function(require,module,exports){
+},{"../../../utils/assert":142,"../SparseSnapshotTree":32,"../snap/LeafNode":43,"../snap/indexes/PriorityIndex":50,"../snap/nodeFromJSON":52,"./Path":66}],68:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -12132,7 +12145,7 @@ var SortedMap = function () {
 exports.SortedMap = SortedMap;
 
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -12370,7 +12383,7 @@ var Tree = function () {
 exports.Tree = Tree;
 
 
-},{"../../../utils/assert":141,"../../../utils/obj":150,"./Path":65}],69:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/obj":151,"./Path":66}],70:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -12475,7 +12488,7 @@ var VisibilityMonitor = function (_super) {
 exports.VisibilityMonitor = VisibilityMonitor;
 
 
-},{"../../../utils/assert":141,"./EventEmitter":61}],70:[function(require,module,exports){
+},{"../../../utils/assert":142,"./EventEmitter":62}],71:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -12607,7 +12620,7 @@ var parseURL = exports.parseURL = function parseURL(dataURL) {
 };
 
 
-},{"../../RepoInfo":26,"../Path":65,"../util":71}],71:[function(require,module,exports){
+},{"../../RepoInfo":27,"../Path":66,"../util":72}],72:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -13254,7 +13267,7 @@ var setTimeoutNonBlocking = exports.setTimeoutNonBlocking = function setTimeoutN
 };
 
 
-},{"../../../utils/Sha1":140,"../../../utils/assert":141,"../../../utils/crypt":143,"../../../utils/environment":145,"../../../utils/json":148,"../../../utils/obj":150,"../../../utils/utf8":153,"../storage/storage":59}],72:[function(require,module,exports){
+},{"../../../utils/Sha1":141,"../../../utils/assert":142,"../../../utils/crypt":144,"../../../utils/environment":146,"../../../utils/json":149,"../../../utils/obj":151,"../../../utils/utf8":154,"../storage/storage":60}],73:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -13551,7 +13564,7 @@ var validateObjectContainsKey = exports.validateObjectContainsKey = function val
 };
 
 
-},{"../../../utils/obj":150,"../../../utils/utf8":153,"../../../utils/validation":155,"./Path":65,"./util":71}],73:[function(require,module,exports){
+},{"../../../utils/obj":151,"../../../utils/utf8":154,"../../../utils/validation":156,"./Path":66,"./util":72}],74:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -13636,7 +13649,7 @@ var CacheNode = function () {
 exports.CacheNode = CacheNode;
 
 
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -13734,7 +13747,7 @@ var Change = function () {
 exports.Change = Change;
 
 
-},{}],75:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -13812,7 +13825,7 @@ var ChildChangeAccumulator = function () {
 exports.ChildChangeAccumulator = ChildChangeAccumulator;
 
 
-},{"../../../utils/assert":141,"../../../utils/obj":150,"./Change":74}],76:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/obj":151,"./Change":75}],77:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -13921,7 +13934,7 @@ var WriteTreeCompleteChildSource = function () {
 exports.WriteTreeCompleteChildSource = WriteTreeCompleteChildSource;
 
 
-},{"./CacheNode":73}],77:[function(require,module,exports){
+},{"./CacheNode":74}],78:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -14039,7 +14052,7 @@ var CancelEvent = function () {
 exports.CancelEvent = CancelEvent;
 
 
-},{"../../../utils/json":148}],78:[function(require,module,exports){
+},{"../../../utils/json":149}],79:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -14181,7 +14194,7 @@ var EventGenerator = function () {
 exports.EventGenerator = EventGenerator;
 
 
-},{"../../../utils/assert":141,"../snap/Node":43,"./Change":74}],79:[function(require,module,exports){
+},{"../../../utils/assert":142,"../snap/Node":44,"./Change":75}],80:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -14363,7 +14376,7 @@ var EventList = function () {
 exports.EventList = EventList;
 
 
-},{"../util/util":71}],80:[function(require,module,exports){
+},{"../util/util":72}],81:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -14583,7 +14596,7 @@ var ChildEventRegistration = function () {
 exports.ChildEventRegistration = ChildEventRegistration;
 
 
-},{"../../../utils/assert":141,"../../../utils/obj":150,"../../api/DataSnapshot":13,"./Event":77}],81:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/obj":151,"../../api/DataSnapshot":14,"./Event":78}],82:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -14997,7 +15010,7 @@ var QueryParams = function () {
 exports.QueryParams = QueryParams;
 
 
-},{"../../../utils/assert":141,"../../../utils/json":148,"../snap/indexes/KeyIndex":47,"../snap/indexes/PathIndex":48,"../snap/indexes/PriorityIndex":49,"../snap/indexes/ValueIndex":50,"../util/util":71,"./filter/IndexedFilter":85,"./filter/LimitedFilter":86,"./filter/RangedFilter":87}],82:[function(require,module,exports){
+},{"../../../utils/assert":142,"../../../utils/json":149,"../snap/indexes/KeyIndex":48,"../snap/indexes/PathIndex":49,"../snap/indexes/PriorityIndex":50,"../snap/indexes/ValueIndex":51,"../util/util":72,"./filter/IndexedFilter":86,"./filter/LimitedFilter":87,"./filter/RangedFilter":88}],83:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -15218,7 +15231,7 @@ var View = function () {
 exports.View = View;
 
 
-},{"../../../utils/assert":141,"../operation/Operation":38,"../snap/ChildrenNode":40,"../snap/indexes/PriorityIndex":49,"./CacheNode":73,"./Change":74,"./EventGenerator":78,"./ViewCache":83,"./ViewProcessor":84,"./filter/IndexedFilter":85}],83:[function(require,module,exports){
+},{"../../../utils/assert":142,"../operation/Operation":39,"../snap/ChildrenNode":41,"../snap/indexes/PriorityIndex":50,"./CacheNode":74,"./Change":75,"./EventGenerator":79,"./ViewCache":84,"./ViewProcessor":85,"./filter/IndexedFilter":86}],84:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -15322,7 +15335,7 @@ var ViewCache = function () {
 exports.ViewCache = ViewCache;
 
 
-},{"../snap/ChildrenNode":40,"./CacheNode":73}],84:[function(require,module,exports){
+},{"../snap/ChildrenNode":41,"./CacheNode":74}],85:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -15853,7 +15866,7 @@ var ViewProcessor = function () {
 exports.ViewProcessor = ViewProcessor;
 
 
-},{"../../../utils/assert":141,"../operation/Operation":38,"../snap/ChildrenNode":40,"../snap/indexes/KeyIndex":47,"../util/ImmutableTree":62,"../util/Path":65,"./Change":74,"./ChildChangeAccumulator":75,"./CompleteChildSource":76}],85:[function(require,module,exports){
+},{"../../../utils/assert":142,"../operation/Operation":39,"../snap/ChildrenNode":41,"../snap/indexes/KeyIndex":48,"../util/ImmutableTree":63,"../util/Path":66,"./Change":75,"./ChildChangeAccumulator":76,"./CompleteChildSource":77}],86:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -15994,7 +16007,7 @@ var IndexedFilter = function () {
 exports.IndexedFilter = IndexedFilter;
 
 
-},{"../../../../utils/assert":141,"../../snap/ChildrenNode":40,"../../snap/indexes/PriorityIndex":49,"../Change":74}],86:[function(require,module,exports){
+},{"../../../../utils/assert":142,"../../snap/ChildrenNode":41,"../../snap/indexes/PriorityIndex":50,"../Change":75}],87:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -16243,7 +16256,7 @@ var LimitedFilter = function () {
 exports.LimitedFilter = LimitedFilter;
 
 
-},{"../../../../utils/assert":141,"../../snap/ChildrenNode":40,"../../snap/Node":43,"../Change":74,"./RangedFilter":87}],87:[function(require,module,exports){
+},{"../../../../utils/assert":142,"../../snap/ChildrenNode":41,"../../snap/Node":44,"../Change":75,"./RangedFilter":88}],88:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -16397,7 +16410,7 @@ var RangedFilter = function () {
 exports.RangedFilter = RangedFilter;
 
 
-},{"../../../core/snap/Node":43,"../../snap/ChildrenNode":40,"../../snap/indexes/PriorityIndex":49,"./IndexedFilter":85}],88:[function(require,module,exports){
+},{"../../../core/snap/Node":44,"../../snap/ChildrenNode":41,"../../snap/indexes/PriorityIndex":50,"./IndexedFilter":86}],89:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -16998,7 +17011,7 @@ var FirebaseIFrameScriptHolder = function () {
 exports.FirebaseIFrameScriptHolder = FirebaseIFrameScriptHolder;
 
 
-},{"../../utils/environment":145,"../../utils/json":148,"../core/stats/StatsManager":55,"../core/util/CountedSet":60,"../core/util/util":71,"./Constants":90,"./polling/PacketReceiver":93}],89:[function(require,module,exports){
+},{"../../utils/environment":146,"../../utils/json":149,"../core/stats/StatsManager":56,"../core/util/CountedSet":61,"../core/util/util":72,"./Constants":91,"./polling/PacketReceiver":94}],90:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -17475,7 +17488,7 @@ var Connection = function () {
 exports.Connection = Connection;
 
 
-},{"../core/storage/storage":59,"../core/util/util":71,"./Constants":90,"./TransportManager":91}],90:[function(require,module,exports){
+},{"../core/storage/storage":60,"../core/util/util":72,"./Constants":91,"./TransportManager":92}],91:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -17511,7 +17524,7 @@ var WEBSOCKET = exports.WEBSOCKET = 'websocket';
 var LONG_POLLING = exports.LONG_POLLING = 'long_polling';
 
 
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -17618,7 +17631,7 @@ var TransportManager = function () {
 exports.TransportManager = TransportManager;
 
 
-},{"../core/util/util":71,"./BrowserPollConnection":88,"./WebSocketConnection":92}],92:[function(require,module,exports){
+},{"../core/util/util":72,"./BrowserPollConnection":89,"./WebSocketConnection":93}],93:[function(require,module,exports){
 (function (process){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
@@ -17980,7 +17993,7 @@ exports.WebSocketConnection = WebSocketConnection;
 
 
 }).call(this,require('_process'))
-},{"../../app":7,"../../utils/assert":141,"../../utils/constants":142,"../../utils/environment":145,"../../utils/json":148,"../core/stats/StatsManager":55,"../core/storage/storage":59,"../core/util/util":71,"./Constants":90,"_process":6}],93:[function(require,module,exports){
+},{"../../app":8,"../../utils/assert":142,"../../utils/constants":143,"../../utils/environment":146,"../../utils/json":149,"../core/stats/StatsManager":56,"../core/storage/storage":60,"../core/util/util":72,"./Constants":91,"_process":7}],94:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -18075,7 +18088,7 @@ var PacketReceiver = function () {
 exports.PacketReceiver = PacketReceiver;
 
 
-},{"../../core/util/util":71}],94:[function(require,module,exports){
+},{"../../core/util/util":72}],95:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -18120,7 +18133,7 @@ exports.default = _app2.default; /**
 module.exports = exports['default'];
 
 
-},{"./app":7,"./auth":11,"./database":12,"./messaging":95,"./storage":107}],95:[function(require,module,exports){
+},{"./app":8,"./auth":12,"./database":13,"./messaging":96,"./storage":108}],96:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -18179,7 +18192,7 @@ function registerMessaging(instance) {
 registerMessaging(_app2.default);
 
 
-},{"./app":7,"./messaging/controllers/sw-controller":97,"./messaging/controllers/window-controller":98}],96:[function(require,module,exports){
+},{"./app":8,"./messaging/controllers/sw-controller":98,"./messaging/controllers/window-controller":99}],97:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -18368,7 +18381,7 @@ exports.default = ControllerInterface;
 module.exports = exports['default'];
 
 
-},{"../../app/errors":8,"../models/errors":101,"../models/notification-permission":103,"../models/token-manager":104}],97:[function(require,module,exports){
+},{"../../app/errors":9,"../models/errors":102,"../models/notification-permission":104,"../models/token-manager":105}],98:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -18704,7 +18717,7 @@ exports.default = SWController;
 module.exports = exports['default'];
 
 
-},{"../models/errors":101,"../models/fcm-details":102,"../models/worker-page-message":105,"./controller-interface":96}],98:[function(require,module,exports){
+},{"../models/errors":102,"../models/fcm-details":103,"../models/worker-page-message":106,"./controller-interface":97}],99:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19063,7 +19076,7 @@ exports.default = WindowController;
 module.exports = exports['default'];
 
 
-},{"../../app/subscribe":10,"../models/default-sw":100,"../models/errors":101,"../models/notification-permission":103,"../models/worker-page-message":105,"./controller-interface":96}],99:[function(require,module,exports){
+},{"../../app/subscribe":11,"../models/default-sw":101,"../models/errors":102,"../models/notification-permission":104,"../models/worker-page-message":106,"./controller-interface":97}],100:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19102,7 +19115,7 @@ function toBase64(arrayBuffer) {
 module.exports = exports['default'];
 
 
-},{}],100:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19134,7 +19147,7 @@ exports.default = {
 module.exports = exports['default'];
 
 
-},{}],101:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19204,7 +19217,7 @@ var _a;
 module.exports = exports['default'];
 
 
-},{}],102:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19242,7 +19255,7 @@ exports.default = {
 module.exports = exports['default'];
 
 
-},{}],103:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19275,7 +19288,7 @@ exports.default = {
 module.exports = exports['default'];
 
 
-},{}],104:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19647,7 +19660,7 @@ exports.default = TokenManager;
 module.exports = exports['default'];
 
 
-},{"../../app/errors":8,"../helpers/array-buffer-to-base64":99,"./errors":101,"./fcm-details":102}],105:[function(require,module,exports){
+},{"../../app/errors":9,"../helpers/array-buffer-to-base64":100,"./errors":102,"./fcm-details":103}],106:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19697,7 +19710,7 @@ exports.default = {
 module.exports = exports['default'];
 
 
-},{}],106:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 (function (root) {
 
   // Store setTimeout reference so promise-polyfill will be unaffected by
@@ -19932,7 +19945,7 @@ module.exports = exports['default'];
 
 })(this);
 
-},{}],107:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -19998,7 +20011,7 @@ function registerStorage(instance) {
 registerStorage(_app2.default);
 
 
-},{"./app":7,"./storage/implementation/string":129,"./storage/implementation/taskenums":130,"./storage/implementation/xhriopool":135,"./storage/reference":136,"./storage/service":137}],108:[function(require,module,exports){
+},{"./app":8,"./storage/implementation/string":130,"./storage/implementation/taskenums":131,"./storage/implementation/xhriopool":136,"./storage/reference":137,"./storage/service":138}],109:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20159,7 +20172,7 @@ function nullFunctionSpec(opt_optional) {
 }
 
 
-},{"./error":115,"./metadata":120,"./type":131}],109:[function(require,module,exports){
+},{"./error":116,"./metadata":121,"./type":132}],110:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20214,7 +20227,7 @@ function remove(array, elem) {
 }
 
 
-},{}],110:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20267,7 +20280,7 @@ function async(f) {
  */
 
 
-},{"./promise_external":124}],111:[function(require,module,exports){
+},{"./promise_external":125}],112:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20411,7 +20424,7 @@ var AuthWrapper = function () {
 exports.AuthWrapper = AuthWrapper;
 
 
-},{"./constants":114,"./error":115,"./failrequest":116,"./location":119,"./promise_external":124,"./requestmap":127,"./type":131}],112:[function(require,module,exports){
+},{"./constants":115,"./error":116,"./failrequest":117,"./location":120,"./promise_external":125,"./requestmap":128,"./type":132}],113:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20538,7 +20551,7 @@ function stop(id) {
 }
 
 
-},{}],113:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20681,7 +20694,7 @@ var FbsBlob = function () {
 exports.FbsBlob = FbsBlob;
 
 
-},{"./fs":117,"./string":129,"./type":131}],114:[function(require,module,exports){
+},{"./fs":118,"./string":130,"./type":132}],115:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20749,7 +20762,7 @@ var defaultMaxUploadRetryTime = exports.defaultMaxUploadRetryTime = 10 * 60 * 10
 var minSafeInteger = exports.minSafeInteger = -9007199254740991;
 
 
-},{}],115:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -20974,7 +20987,7 @@ function internalError(message) {
 }
 
 
-},{"./constants":114}],116:[function(require,module,exports){
+},{"./constants":115}],117:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21016,7 +21029,7 @@ var FailRequest = function () {
 exports.FailRequest = FailRequest;
 
 
-},{"./promise_external":124}],117:[function(require,module,exports){
+},{"./promise_external":125}],118:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21091,7 +21104,7 @@ function sliceBlob(blob, start, end) {
 }
 
 
-},{"./type":131}],118:[function(require,module,exports){
+},{"./type":132}],119:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21142,7 +21155,7 @@ function jsonObjectOrNull(s) {
   */
 
 
-},{"./type":131}],119:[function(require,module,exports){
+},{"./type":132}],120:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21259,7 +21272,7 @@ var Location = function () {
 exports.Location = Location;
 
 
-},{"./error":115}],120:[function(require,module,exports){
+},{"./error":116}],121:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21467,7 +21480,7 @@ function metadataValidator(p) {
 }
 
 
-},{"./json":118,"./location":119,"./path":123,"./type":131,"./url":132}],121:[function(require,module,exports){
+},{"./json":119,"./location":120,"./path":124,"./type":132,"./url":133}],122:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21520,7 +21533,7 @@ function clone(obj) {
 }
 
 
-},{}],122:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21574,7 +21587,7 @@ var Observer = function () {
 exports.Observer = Observer;
 
 
-},{"./type":131}],123:[function(require,module,exports){
+},{"./type":132}],124:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21645,7 +21658,7 @@ function lastComponent(path) {
 }
 
 
-},{}],124:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21699,7 +21712,7 @@ function reject(error) {
 }
 
 
-},{"../../utils/promise":151}],125:[function(require,module,exports){
+},{"../../utils/promise":152}],126:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21953,7 +21966,7 @@ function makeRequest(requestInfo, authToken, pool) {
 }
 
 
-},{"../../app":7,"./array":109,"./backoff":112,"./error":115,"./object":121,"./promise_external":124,"./type":131,"./url":132,"./xhrio":133}],126:[function(require,module,exports){
+},{"../../app":8,"./array":110,"./backoff":113,"./error":116,"./object":122,"./promise_external":125,"./type":132,"./url":133,"./xhrio":134}],127:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -21994,7 +22007,7 @@ var RequestInfo = function () {
 exports.RequestInfo = RequestInfo;
 
 
-},{}],127:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22070,7 +22083,7 @@ var RequestMap = function () {
 exports.RequestMap = RequestMap;
 
 
-},{"./constants":114,"./object":121}],128:[function(require,module,exports){
+},{"./constants":115,"./object":122}],129:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22425,7 +22438,7 @@ function continueResumableUpload(location, authWrapper, url, blob, chunkSize, ma
 }
 
 
-},{"./array":109,"./blob":113,"./error":115,"./metadata":120,"./object":121,"./requestinfo":126,"./type":131,"./url":132}],129:[function(require,module,exports){
+},{"./array":110,"./blob":114,"./error":116,"./metadata":121,"./object":122,"./requestinfo":127,"./type":132,"./url":133}],130:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22626,7 +22639,7 @@ function endsWith(s, end) {
 }
 
 
-},{"./error":115}],130:[function(require,module,exports){
+},{"./error":116}],131:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22698,7 +22711,7 @@ function taskStateFromInternalTaskState(state) {
 }
 
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22771,7 +22784,7 @@ function isNativeBlobDefined() {
 }
 
 
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22836,7 +22849,7 @@ function makeQueryString(params) {
 }
 
 
-},{"./constants":114,"./object":121}],133:[function(require,module,exports){
+},{"./constants":115,"./object":122}],134:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -22872,7 +22885,7 @@ var ErrorCode = exports.ErrorCode = undefined;
 })(ErrorCode || (exports.ErrorCode = ErrorCode = {}));
 
 
-},{}],134:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -23032,7 +23045,7 @@ var NetworkXhrIo = function () {
 exports.NetworkXhrIo = NetworkXhrIo;
 
 
-},{"./error":115,"./object":121,"./promise_external":124,"./type":131,"./xhrio":133}],135:[function(require,module,exports){
+},{"./error":116,"./object":122,"./promise_external":125,"./type":132,"./xhrio":134}],136:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -23073,7 +23086,7 @@ var XhrIoPool = function () {
 exports.XhrIoPool = XhrIoPool;
 
 
-},{"./xhrio_network":134}],136:[function(require,module,exports){
+},{"./xhrio_network":135}],137:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -23350,7 +23363,7 @@ var Reference = function () {
 exports.Reference = Reference;
 
 
-},{"./implementation/args":108,"./implementation/blob":113,"./implementation/error":115,"./implementation/location":119,"./implementation/metadata":120,"./implementation/object":121,"./implementation/path":123,"./implementation/requests":128,"./implementation/string":129,"./implementation/type":131,"./task":138}],137:[function(require,module,exports){
+},{"./implementation/args":109,"./implementation/blob":114,"./implementation/error":116,"./implementation/location":120,"./implementation/metadata":121,"./implementation/object":122,"./implementation/path":124,"./implementation/requests":129,"./implementation/string":130,"./implementation/type":132,"./task":139}],138:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -23520,7 +23533,7 @@ var ServiceInternals = function () {
 exports.ServiceInternals = ServiceInternals;
 
 
-},{"./implementation/args":108,"./implementation/authwrapper":111,"./implementation/location":119,"./implementation/promise_external":124,"./implementation/request":125,"./reference":136}],138:[function(require,module,exports){
+},{"./implementation/args":109,"./implementation/authwrapper":112,"./implementation/location":120,"./implementation/promise_external":125,"./implementation/request":126,"./reference":137}],139:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24097,7 +24110,7 @@ var UploadTask = function () {
 exports.UploadTask = UploadTask;
 
 
-},{"./implementation/args":108,"./implementation/array":109,"./implementation/async":110,"./implementation/error":115,"./implementation/observer":122,"./implementation/promise_external":124,"./implementation/requests":128,"./implementation/taskenums":130,"./implementation/type":131,"./tasksnapshot":139}],139:[function(require,module,exports){
+},{"./implementation/args":109,"./implementation/array":110,"./implementation/async":111,"./implementation/error":116,"./implementation/observer":123,"./implementation/promise_external":125,"./implementation/requests":129,"./implementation/taskenums":131,"./implementation/type":132,"./tasksnapshot":140}],140:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24137,7 +24150,7 @@ var UploadTaskSnapshot = function () {
 exports.UploadTaskSnapshot = UploadTaskSnapshot;
 
 
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24420,7 +24433,7 @@ var Sha1 = function (_super) {
 exports.Sha1 = Sha1;
 
 
-},{"./hash":147}],141:[function(require,module,exports){
+},{"./hash":148}],142:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24469,7 +24482,7 @@ var assertionError = exports.assertionError = function assertionError(message) {
 };
 
 
-},{"./constants":142}],142:[function(require,module,exports){
+},{"./constants":143}],143:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24513,7 +24526,7 @@ var CONSTANTS = exports.CONSTANTS = {
 };
 
 
-},{}],143:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24774,7 +24787,7 @@ var base64 = exports.base64 = {
 };
 
 
-},{"./globalScope":146}],144:[function(require,module,exports){
+},{"./globalScope":147}],145:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24857,7 +24870,7 @@ function patchProperty(obj, prop, value) {
 }
 
 
-},{}],145:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -24928,7 +24941,7 @@ var isNodeSdk = exports.isNodeSdk = function isNodeSdk() {
 };
 
 
-},{"./constants":142}],146:[function(require,module,exports){
+},{"./constants":143}],147:[function(require,module,exports){
 (function (global){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
@@ -24970,7 +24983,7 @@ var globalScope = exports.globalScope = scope;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],147:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25033,7 +25046,7 @@ var Hash = function () {
 exports.Hash = Hash;
 
 
-},{}],148:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25077,7 +25090,7 @@ var stringify = exports.stringify = function stringify(data) {
 };
 
 
-},{}],149:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25220,7 +25233,7 @@ var isAdmin = exports.isAdmin = function isAdmin(token) {
 };
 
 
-},{"../database/core/util/util":71,"./json":148}],150:[function(require,module,exports){
+},{"../database/core/util/util":72,"./json":149}],151:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25365,7 +25378,7 @@ var every = exports.every = function every(obj, fn) {
 };
 
 
-},{}],151:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25461,7 +25474,7 @@ var attachDummyErrorHandler = exports.attachDummyErrorHandler = function attachD
 };
 
 
-},{"../utils/globalScope":146,"promise-polyfill":106}],152:[function(require,module,exports){
+},{"../utils/globalScope":147,"promise-polyfill":107}],153:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25552,7 +25565,7 @@ if (!Array.prototype.find) {
 }
 
 
-},{}],153:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25650,7 +25663,7 @@ var stringLength = exports.stringLength = function stringLength(str) {
 };
 
 
-},{"./assert":141}],154:[function(require,module,exports){
+},{"./assert":142}],155:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
@@ -25719,7 +25732,7 @@ var querystringDecode = exports.querystringDecode = function querystringDecode(q
 };
 
 
-},{"./obj":150}],155:[function(require,module,exports){
+},{"./obj":151}],156:[function(require,module,exports){
 /*! @license Firebase v4.3.0
 Build: rev-bd8265e
 Terms: https://firebase.google.com/terms/ */
