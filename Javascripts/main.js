@@ -4,6 +4,17 @@ let db = require('./loader'),
     templates = require("./toDaDOM"),
     user = require("./user");
 
+let buildSongObj = function () {
+    return {
+        title: $("#form--title").val(),
+        artist: $("#form--artist").val(),
+        album: $("#form--album").val(),
+        year: $("#form--year").val(),
+        uid: user.getUser()
+    };
+
+};
+
 let loadSongsToDom = function () {
     console.log("Need some songs. I don't see any.");
     let currentUser = user.getUser();
@@ -68,16 +79,7 @@ $("#logout").click(() => {
     user.logOut();
 });
 
-let buildSongObj = function () {
-    let songObj = {
-        title: $("#form--title").val(),
-        artiat: $("#form--artist").val(),
-        album: $("#form--album").val(),
-        year: $("#form--year").val(),
-        uid: user.getUser()
-    };
-    return songObj;
-};
+
 
 $("#add-song").click(function () {
     console.log("clicked add song");

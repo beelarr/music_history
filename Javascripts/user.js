@@ -1,6 +1,6 @@
 "use strict";
 
-let firebase = require("./firebase-post"),
+let firebase = require("./firebase-getter"),
     provider = new firebase.auth().GoogleAuthProvider(),
     currentUser = null;
 

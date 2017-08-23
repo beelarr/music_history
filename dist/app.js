@@ -116,8 +116,19 @@ module.exports = {getSongs, addSong, getSong, deleteSong, editSong};
 "use strict";
 
 let db = require('./loader'),
-    templates = require("./toDaDOM").songForm(),
+    templates = require("./toDaDOM"),
     user = require("./user");
+
+let buildSongObj = function () {
+    return {
+        title: $("#form--title").val(),
+        artist: $("#form--artist").val(),
+        album: $("#form--album").val(),
+        year: $("#form--year").val(),
+        uid: user.getUser()
+    };
+
+};
 
 let loadSongsToDom = function () {
     console.log("Need some songs. I don't see any.");
@@ -142,10 +153,56 @@ $(".edit-btn").click(function () {
         });
 });
 
+$(".save_edit_btn").click(function () {
+    let songObj = buildSongObj(),
+        songID = $(this).attr('id');
+    console.log('songID', songID);
+    db.editSong(songObj, songID)
+        .then((data) => {
+        loadSongsToDom();
+        });
+});
+
+$(".delete-btn").click(function () {
+    console.log('clicked on delete song', $(this).data("delete-id"));
+    let songID = $(this).data("delete-id");
+    db.deleteSong(songID)
+        .then(() => {
+        loadSongsToDom();
+        });
+});
+
+$("#view-songs").click(function () {
+    $(".uiContainer--wrapper").html("");
+    loadSongsToDom();
+});
+
+$("#auth-btn").click(function () {
+    console.log('clicke auth');
+    user.logInGoogle()
+        .then((result) => {
+        console.log('result from login', result.user.uid);
+        user.setUser(result.user.uid);
+        $("#auth-btn").addClass("is-hidden");
+        $("#logout").removeClass('is-hidden');
+        loadSongsToDom();
+        });
+});
+
+$("#logout").click(() => {
+    console.log('logout clicked');
+    user.logOut();
+});
 
 
 
-
+$("#add-song").click(function () {
+    console.log("clicked add song");
+    var songForm = templates.songForm()
+        .then((songForm) => {
+        $(".uiContainer--wrapper").html(songForm);
+        });
+});
 },{"./loader":2,"./toDaDOM":5,"./user":6}],4:[function(require,module,exports){
 // "use strict";
 //
@@ -320,7 +377,7 @@ module.exports = {makeSongList, songForm};
 "use strict";
 
 let firebase = require("./firebase-post"),
-    provider = new firebase.auth.GoogleAuthProvider(),
+    provider = new firebase.auth().GoogleAuthProvider(),
     currentUser = null;
 
 firebase.auth().onAuthStateChanged((user) => {
