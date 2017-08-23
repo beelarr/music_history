@@ -14,5 +14,8 @@
     <orderEntry type="library" name="browserify-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="es6-promise-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="grunt-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="firebase-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="firebase-client-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="firebase-token-generator-DefinitelyTyped" level="application" />
   </component>
 </module>

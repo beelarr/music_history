@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{browserify-DefinitelyTyped, es6-promise-DefinitelyTyped, grunt-DefinitelyTyped, jQuery, jQuery UI-1.10.2, jQuery-2.0.0}" />
+    <file url="file://$PROJECT_DIR$/lib" libraries="{music_history/lib/node_modules}" />
+    <file url="PROJECT" libraries="{browserify-DefinitelyTyped, es6-promise-DefinitelyTyped, firebase-DefinitelyTyped, firebase-client-DefinitelyTyped, firebase-token-generator-DefinitelyTyped, grunt-DefinitelyTyped, jQuery, jQuery UI-1.10.2, jQuery-2.0.0, music_history/lib/node_modules}" />
     <includedPredefinedLibrary name="WebGL" />
   </component>
 </project>

@@ -115,12 +115,38 @@ module.exports = {getSongs, addSong, getSong, deleteSong, editSong};
 },{}],3:[function(require,module,exports){
 "use strict";
 
-let loader = require('./loader');
-let views = require('./views');
-let pagination = require('./pagination');
-let post = require('./firebase-post');
-let dom = require('./toDaDOM');
-},{"./firebase-post":1,"./loader":2,"./pagination":4,"./toDaDOM":5,"./views":6}],4:[function(require,module,exports){
+let db = require('./loader'),
+    templates = require("./toDaDOM").songForm(),
+    user = require("./user");
+
+let loadSongsToDom = function () {
+    console.log("Need some songs. I don't see any.");
+    let currentUser = user.getUser();
+    console.log('currentUser in loadSongs', currentUser);
+    db.getSongs(currentUser)
+        .then((songData) => {
+        console.log('got data', songData);
+        templates.makeSongList(songData);
+    });
+};
+
+$(".edit-btn").click(function () {
+    console.log('clicked edit button');
+    let songID = $(this).data("edit-id");
+    db.getSong(songID)
+        .then((song) => {
+        return templates.songForm(song, songID);
+        })
+        .then((finishedForm) => {
+        $(".uiContainer--wrapper").html(finishedForm);
+        });
+});
+
+
+
+
+
+},{"./loader":2,"./toDaDOM":5,"./user":6}],4:[function(require,module,exports){
 // "use strict";
 //
 // let loader = require('./loader.js');
@@ -293,30 +319,40 @@ module.exports = {makeSongList, songForm};
 },{"./loader":2}],6:[function(require,module,exports){
 "use strict";
 
-$(function () {
+let firebase = require("./firebase-post"),
+    provider = new firebase.auth.GoogleAuthProvider(),
+    currentUser = null;
 
-// **********VIEW HIDE SHOW**********
-    let add_form = $('form');
-    let add_button = $('#add');
-    add_button.click(() => {
-        add_form.toggleClass('hide');
-    });
+firebase.auth().onAuthStateChanged((user) => {
+    console.log("onAuthStateChanged", user);
+    if (user) {
+        currentUser = user.uid;
+        console.log("current user logged in?", currentUser);
+    }else {
+        currentUser = null;
+        console.log("current user NOTTTT logged in:" , currentUser);
 
-// ************ADD VIEW FUNCTIONALITY*****************
-
-    let artist_input = $('#Artist');
-    let album_input = $('#Album');
-    let song_input = $('#Song');
-    let submit_button = $('#lets-hear-it-button');
-
-
-    submit_button.click(() => {
-        // input_handler(song_input.value, artist_input.value, album_input.value);
-
-    });
-
+    }
 });
-},{}],7:[function(require,module,exports){
+
+let logInGoogle = function () {
+    return firebase.auth().signInWithPopup(provider);
+};
+
+let logOut = function () {
+    return firebase.auth().signOut();
+};
+
+let getUser = function () {
+    return currentUser;
+};
+
+let setUser = function (val) {
+    currentUser = val;
+};
+
+module.exports = {logInGoogle, logOut, getUser, setUser};
+},{"./firebase-post":1}],7:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
